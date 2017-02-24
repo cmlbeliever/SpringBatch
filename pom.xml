@@ -19,10 +19,8 @@
 	</parent>
 
 	<dependencies>
-		<!-- <dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.hsqldb</groupId> <artifactId>hsqldb</artifactId> 
+			</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,6 +52,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
+
+	
 	</dependencies>
 
 	<build>

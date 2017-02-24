@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -35,7 +36,7 @@ public class BatchConfiguration {
 
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
-
+	
 	// @Autowired
 	// public DataSource dataSource;
 
@@ -84,6 +85,7 @@ public class BatchConfiguration {
 				log.info("============writeData start==================");
 				log.info(items.toString());
 				log.info("============writeData end==================");
+				Thread.sleep(10000);
 			}
 		};
 	}
