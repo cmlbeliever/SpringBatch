@@ -14,7 +14,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 	
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
-		System.out.println("before job");
+		System.out.println("before job"+jobExecution.getJobConfigurationName());
 	}
 
 	@Override

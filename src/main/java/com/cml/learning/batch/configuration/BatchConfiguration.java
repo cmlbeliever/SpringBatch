@@ -36,7 +36,7 @@ public class BatchConfiguration {
 
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
-	
+
 	// @Autowired
 	// public DataSource dataSource;
 
@@ -95,6 +95,16 @@ public class BatchConfiguration {
 	@Bean
 	public Job importUserJob(JobCompletionNotificationListener listener) {
 		return jobBuilderFactory.get("importUserJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step1()).end().build();
+	}
+
+	@Bean
+	public Job secondJob(JobCompletionNotificationListener listener) {
+		return jobBuilderFactory.get("secondJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step2()).end().build();
+	}
+
+	@Bean
+	public Step step2() {
+		return stepBuilderFactory.get("step2").<Person, Person> chunk(2).reader(reader()).processor(processor()).writer(writer()).build();
 	}
 
 	@Bean
