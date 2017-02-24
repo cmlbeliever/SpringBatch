@@ -1,4 +1,4 @@
-package com.cml.learning.batch;
+package com.cml.learning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
