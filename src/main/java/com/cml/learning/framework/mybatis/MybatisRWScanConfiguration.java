@@ -10,7 +10,7 @@ import com.cml.learning.framework.mybatis.marker.WriteMapper;
 
 @Configuration
 @AutoConfigureAfter(MybatisRWConfig.class)
-@MapperScan(markerInterface = WriteMapper.class, basePackages = { "com.cml.learning.module.bat000.db" }, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(markerInterface = WriteMapper.class, basePackages = { "com.cml.learning.module" }, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisRWScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRWScanConfiguration.class);
 

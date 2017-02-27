@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 import com.cml.learning.module.bat000.beans.LogBean;
 import com.cml.learning.module.bat000.beans.Person;
-import com.cml.learning.module.bat000.db.LogReadMapper;
+import com.cml.learning.module.bat000.db.Bat000WriteMapper;
 
 @Component
 public class PersonWriter implements ItemWriter<Person> {
 	private static final Logger log = LoggerFactory.getLogger(PersonWriter.class);
 
 	@Autowired
-	private LogReadMapper logMapper;
+	private Bat000WriteMapper logMapper;
 
 	@Override
 	public void write(List<? extends Person> items) throws Exception {

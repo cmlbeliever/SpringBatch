@@ -11,7 +11,7 @@ import com.cml.learning.framework.mybatis.marker.ReadMapper;
 @Configuration
 @AutoConfigureAfter(MybatisRConfig.class)
 @MapperScan(markerInterface = ReadMapper.class, basePackages = {
-		"com.cml.learning.module.bat000.db" }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
+		"com.cml.learning.module" }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
 public class MybatisRScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRScanConfiguration.class);
 
