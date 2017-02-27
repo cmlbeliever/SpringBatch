@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @AutoConfigureAfter(MybatisRConfig.class)
-@MapperScan(basePackages = { "com.cml.springboot.sample.db.r" }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
+@MapperScan(basePackages = { "com.cml.learning.db.r" }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
 public class MybatisRScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRScanConfiguration.class);
 

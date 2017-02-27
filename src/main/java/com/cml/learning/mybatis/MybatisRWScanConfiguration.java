@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @AutoConfigureAfter(MybatisRWConfig.class)
-@MapperScan(basePackages = { "com.cml.springboot.sample.db.rw" }, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = { "com.cml.learning.db.rw" }, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisRWScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRWScanConfiguration.class);
 
