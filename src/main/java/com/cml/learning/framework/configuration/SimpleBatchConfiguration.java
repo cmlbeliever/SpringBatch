@@ -47,7 +47,6 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @since 2.2
  * @see EnableBatchProcessing
  */
-@Configuration
 public class SimpleBatchConfiguration extends AbstractBatchConfiguration {
 
 	@Autowired
