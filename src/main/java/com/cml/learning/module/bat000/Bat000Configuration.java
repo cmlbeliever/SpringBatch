@@ -9,9 +9,6 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +34,6 @@ public class Bat000Configuration {
 	@Autowired
 	private PersonWriter personWriter;
 
-
 	// tag::readerwriterprocessor[]
 	@Bean
 	public ItemReader<Person> reader() {
@@ -54,14 +50,13 @@ public class Bat000Configuration {
 	// tag::jobstep[]
 	@Bean
 	public Job importUserJob(JobCompletionNotificationListener listener) {
-		return jobBuilderFactory.get("importUserJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step2()).end().build();
+		return jobBuilderFactory.get("importUserJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step1()).end().build();
 	}
 
-	// @Bean
-	// public Job secondJob(JobCompletionNotificationListener listener) {
-	// return jobBuilderFactory.get("secondJob").incrementer(new
-	// RunIdIncrementer()).listener(listener).flow(step2()).end().build();
-	// }
+	@Bean
+	public Job secondJob(JobCompletionNotificationListener listener) {
+		return jobBuilderFactory.get("secondJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step2()).end().build();
+	}
 
 	@Bean
 	public Step step2() {
