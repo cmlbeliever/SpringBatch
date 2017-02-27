@@ -3,9 +3,15 @@ package com.cml.learning.framework.module;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
-public class BaseModule {
+public abstract class BaseModule implements CommandLineRunner {
+
+	private static final Logger log = LoggerFactory.getLogger(BaseModule.class);
+
 	public static void run(Class<? extends BaseModule> module, String[] args) {
 		SpringApplication app = new SpringApplication(module);
 
@@ -20,5 +26,14 @@ public class BaseModule {
 			app.setDefaultProperties(param);
 		}
 		app.run(args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		if (null != args) {
+			for (String arg : args) {
+				log.info("execute module with argument : " + arg);
+			}
+		}
 	}
 }

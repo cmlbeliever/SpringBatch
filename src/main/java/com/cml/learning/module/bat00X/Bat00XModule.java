@@ -1,8 +1,6 @@
-package com.cml.learning.module.bat000;
+package com.cml.learning.module.bat00X;
 
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,16 +19,15 @@ import com.cml.learning.framework.module.BaseModule;
 @ComponentScan
 @ComponentScans({ @ComponentScan(ModuleConst.Framwwork.PACKAGE_FRAMEWORK) })
 @PropertySources({ @PropertySource(ModuleConst.Framwwork.DB_CONFIG_RW), @PropertySource(ModuleConst.Framwwork.DB_CONFIG_R) })
-@PropertySource("classpath:config/module/bat000.properties")
-public class Bat000Module extends BaseModule implements ModuleConst {
+@PropertySource("classpath:config/module/bat00X.properties")
+public class Bat00XModule extends BaseModule implements ModuleConst {
 
-	public static final String MODULE_NAME = "bat000";
+	public static final String MODULE_NAME = "bat00X";
 
-	@Autowired
-	public JobBuilderFactory jobBuilderFactory;
+	public static final String KEY_OPERATE_COUNT = "operateCount";
 
 	public static void main(String[] args) {
-		run(Bat000Module.class, args);
+		run(Bat00XModule.class, args);
 	}
 
 }
