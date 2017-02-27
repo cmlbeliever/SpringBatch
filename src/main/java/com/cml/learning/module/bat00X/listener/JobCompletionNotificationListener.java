@@ -12,7 +12,7 @@ import com.cml.learning.module.bat00X.Bat00XModule;
 import com.cml.learning.module.bat00X.beans.LogBean;
 import com.cml.learning.module.bat00X.db.Bat00XWriteMapper;
 
-@Component
+@Component()
 public class JobCompletionNotificationListener extends JobExecutionListenerSupport {
 
 	private static final Logger log = LoggerFactory.getLogger(JobCompletionNotificationListener.class);
@@ -22,7 +22,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
-		System.out.println("before job" + jobExecution.getJobConfigurationName());
+		log.info("before execu job  " + jobExecution.getJobParameters());
 	}
 
 	@Override
@@ -30,13 +30,12 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
 		LogBean logbean = new LogBean();
 		logbean.setApiUrl("job operate success " + jobExecution.getStatus() + ",operate count = "
-				+ jobExecution.getExecutionContext().getInt(Bat00XModule.KEY_OPERATE_COUNT) + ",job:"
-				+ jobExecution.getJobParameters().getString("jobName"));
+				+ jobExecution.getExecutionContext().getInt(Bat00XModule.KEY_OPERATE_COUNT) + ",job:" + jobExecution.getJobInstance().getJobName());
 		logbean.setCallDayStr(new DateTime().toString("yyyyMMdd"));
 		logbean.setParameters("param" + jobExecution.getJobParameters());
 		logbean.setCreateDate(new DateTime());
 		logbean.setReturnStatusCode(200);
-		logbean.setReturns("batch[" + Bat00XModule.MODULE_NAME + "]");
+		logbean.setReturns("batch[" + Bat00XModule.MODULE_NAME + "]" + jobExecution.getJobParameters());
 		logMapper.insertLog(logbean);
 	}
 }

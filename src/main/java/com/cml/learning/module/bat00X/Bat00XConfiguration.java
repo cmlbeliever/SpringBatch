@@ -53,12 +53,12 @@ public class Bat00XConfiguration {
 
 	@Bean
 	public Job importUserJob(JobCompletionNotificationListener listener) {
-		return jobBuilderFactory.get("importUserJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step1()).end().build();
+		return jobBuilderFactory.get("importUserJob1").incrementer(new RunIdIncrementer()).listener(listener).flow(step1()).end().build();
 	}
 
 	@Bean
 	public Job secondJob(JobCompletionNotificationListener listener) {
-		return jobBuilderFactory.get("secondJob").incrementer(new RunIdIncrementer()).listener(listener).flow(step2()).end().build();
+		return jobBuilderFactory.get("importUserJob2").incrementer(new RunIdIncrementer()).listener(listener).flow(step2()).end().build();
 	}
 
 	@Bean
