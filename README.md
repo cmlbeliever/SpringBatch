@@ -1,7 +1,7 @@
 # 工程说明
 ------
 项目将SpringBatch整合到SpringBoot中，去除配置化信息，基于约定优于配置的思想实现。
-设计到的主要框架有：SpringBoot，SpringBatch,Mybatis,DBCP ...
+涉及到的主要框架有：SpringBoot，SpringBatch,Mybatis,DBCP ...
 
 **/db目录下的sql为当前项目所用到的ddl**
 
