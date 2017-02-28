@@ -17,15 +17,16 @@ public abstract class BaseModule implements CommandLineRunner {
 	private static final String BASE_PACKAGE = ModuleConst.Framwwork.PACKAGE_BATCH;
 
 	private static final String DB_R_ALIAS_KEY = "db.mybatis.r.typeAliasesPackage";
-	private static final String DB_R_ALIAS_FORMAT = BASE_PACKAGE + ".module.%s.beans";
+	private static final String DB_R_ALIAS_FORMAT = BASE_PACKAGE + ".module.%s.beans,com.bolstra.beans";
 	private static final String DB_RW_ALIAS_KEY = "db.mybatis.rw.typeAliasesPackage";
-	private static final String DB_RW_ALIAS_FORMAT = BASE_PACKAGE + ".module.%s.beans";
+	private static final String DB_RW_ALIAS_FORMAT = BASE_PACKAGE + ".module.%s.beans,com.bolstra.beans";
 
 	/** 运行时传递的batch参数 **/
 	private static final String ARGS_BATCH_NAME = "batchName";
 
 	public static void run(Class<? extends BaseModule> module, String[] args) {
 		SpringApplication app = new SpringApplication(module);
+		app.setWebEnvironment(false);
 
 		if (null == args || args.length == 0) {
 			throw new IllegalArgumentException("Args is required,Include " + ARGS_BATCH_NAME + " at least!!");
@@ -57,6 +58,8 @@ public abstract class BaseModule implements CommandLineRunner {
 				String writeBeansPackage = String.format(DB_RW_ALIAS_FORMAT, value);
 				param.put(DB_R_ALIAS_KEY, readBeansPackage);
 				param.put(DB_RW_ALIAS_KEY, writeBeansPackage);
+				// 对应batch 配置目录
+				param.put(ModuleConst.Module.BATCH_PROPERTIES, String.format(ModuleConst.Module.BATCH_PROPERTIES_FORMAT, value));
 			} else {
 				param.put(key, value);
 			}
@@ -65,6 +68,7 @@ public abstract class BaseModule implements CommandLineRunner {
 		if (!param.containsKey(DB_RW_ALIAS_KEY) || !param.containsKey(DB_R_ALIAS_KEY)) {
 			throw new IllegalArgumentException("Param " + ARGS_BATCH_NAME + " is required for launch !!!!!");
 		}
+
 		return param;
 	}
 

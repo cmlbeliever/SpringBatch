@@ -27,6 +27,8 @@
 
   
 **项目约定说明**
+
+ - 每个batch类都需要添加注解@BatchAnnotation用于标识batch运行环境
  - 每个batch对应有自己的Configuration，用于配置SpringBatch运行信息
 
  -  所有batch统一在包(com.cml.learning.module)下，根据batch名称定义包名

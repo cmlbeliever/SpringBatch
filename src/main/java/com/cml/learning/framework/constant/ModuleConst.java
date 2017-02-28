@@ -28,4 +28,13 @@ public interface ModuleConst {
 		 */
 		String MAPPER_SCAN_RW_PACKAGE = "com.cml.learning.module";
 	}
+
+	interface Module {
+		/**
+		 * batch 指定properties位置key
+		 */
+		String BATCH_PROPERTIES = "batchProperties";
+		String BATCH_PROPERTIES_PLACEHOLDER = "${batchProperties}";
+		String BATCH_PROPERTIES_FORMAT = "classpath:config/module/%s.properties";
+	}
 }
