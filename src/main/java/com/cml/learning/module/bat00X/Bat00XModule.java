@@ -26,6 +26,11 @@ public class Bat00XModule extends BaseModule implements ModuleConst {
 
 	public static final String KEY_OPERATE_COUNT = "operateCount";
 
+	/**
+	 * 测试batch，用户配置基础batch module信息
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		run(Bat00XModule.class, args);
 	}
