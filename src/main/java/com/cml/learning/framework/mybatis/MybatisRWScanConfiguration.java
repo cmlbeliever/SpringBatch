@@ -6,11 +6,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Configuration;
 
+import com.cml.learning.framework.constant.ModuleConst;
 import com.cml.learning.framework.mybatis.marker.WriteMapper;
 
 @Configuration
 @AutoConfigureAfter(MybatisRWConfig.class)
-@MapperScan(markerInterface = WriteMapper.class, basePackages = { "com.cml.learning.module" }, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(markerInterface = WriteMapper.class, basePackages = {
+		ModuleConst.Framwwork.MAPPER_SCAN_RW_PACKAGE }, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisRWScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRWScanConfiguration.class);
 

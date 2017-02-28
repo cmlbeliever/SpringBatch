@@ -15,5 +15,13 @@ public interface ModuleConst {
 		 * 基础配置包
 		 */
 		String PACKAGE_FRAMEWORK = "com.cml.learning.framework";
+		/**
+		 * 只读mapper interface所在包配置
+		 */
+		String MAPPER_SCAN_R_PACKAGE = "com.cml.learning.module";
+		/**
+		 * 读写mapper interface所在包配置
+		 */
+		String MAPPER_SCAN_RW_PACKAGE = "com.cml.learning.module";
 	}
 }
