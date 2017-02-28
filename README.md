@@ -1,5 +1,4 @@
 # 工程说明
-
 ------
 项目将SpringBatch整合到SpringBoot中，去除配置化信息，基于约定优于配置的思想实现。
 设计到的主要框架有：SpringBoot，SpringBatch,Mybatis,DBCP ...
@@ -41,7 +40,8 @@
  - DB所对应的bean在每个batch下的beans包下，如bat001 对应的bean在包:com.cml.learning.module.bat001.beans下，Mybatis 会自动扫描此包下对应的bean
  - processor,reader,writer都有对应的基类，每个batch下对应的模块都需要继承对应的基类。
  
-
+# 开发问题
+ developing
 
 
 
