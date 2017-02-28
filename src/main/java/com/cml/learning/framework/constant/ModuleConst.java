@@ -12,9 +12,13 @@ public interface ModuleConst {
 		String DB_CONFIG_R = "classpath:config/jdbc-r.properties";
 
 		/**
-		 * 基础配置包
+		 * framework基础配置包
 		 */
 		String PACKAGE_FRAMEWORK = "com.cml.learning.framework";
+		/**
+		 * batch基础包名
+		 */
+		String PACKAGE_BATCH = "com.cml.learning";
 		/**
 		 * 只读mapper interface所在包配置
 		 */

@@ -8,11 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
+import com.cml.learning.framework.constant.ModuleConst;
+
 public abstract class BaseModule implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(BaseModule.class);
 
-	private static final String BASE_PACKAGE = "com.cml.learning";
+	private static final String BASE_PACKAGE = ModuleConst.Framwwork.PACKAGE_BATCH;
 
 	private static final String DB_R_ALIAS_KEY = "db.mybatis.r.typeAliasesPackage";
 	private static final String DB_R_ALIAS_FORMAT = BASE_PACKAGE + ".module.%s.beans";
