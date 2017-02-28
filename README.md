@@ -43,7 +43,7 @@
  - processor,reader,writer都有对应的基类，每个batch下对应的模块都需要继承对应的基类。
  
 # 开发问题
- developing
+  - 多数据源下启动报错问题总结地址：http://blog.csdn.net/cml_blog/article/details/58604485
 
 
 
