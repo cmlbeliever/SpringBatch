@@ -34,8 +34,6 @@
  -  所有batch统一在包(com.cml.learning.module)下，根据batch名称定义包名
 > 如: com.cml.learning.module.batch001
 
- - 需要为每个batch添加配置文件 @PropertySource("classpath:config/module/${batchName}.properties")
-
  -  每个batch继承com.cml.learning.framework.module.BaseModule并且实现接口 com.cml.learning.framework.constant.ModuleConst
  - 只读Mapper需要继承com.cml.learning.framework.mybatis.marker.ReadMapper，并且Mapper名称以**ReadMaper结尾**
  - 只读Mapper对应的xml以**read.sql.xml结尾**，且名称为当前batch名，例如bat001的只读xml为：bat001.read.sql.xml
