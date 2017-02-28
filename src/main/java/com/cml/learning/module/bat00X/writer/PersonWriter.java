@@ -25,6 +25,11 @@ public class PersonWriter extends BaseWriter<Person> {
 
 	@Override
 	public void doWrite(Person item, JobParameters params, ExecutionContext stepContext) throws Exception {
+
+//		if ("END".equals(item.getFirstName())) {
+//			throw new IllegalStateException("主动抛出异常");
+//		}
+
 		LogBean logbean = new LogBean();
 		logbean.setApiUrl("batchTest");
 		logbean.setCallDayStr(new DateTime().toString("yyyyMMdd"));

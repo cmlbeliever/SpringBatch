@@ -28,6 +28,10 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 	@Override
 	public void afterJob(JobExecution jobExecution) {
 
+		jobExecution.getStepExecutions().stream().forEach(step -> {
+			log.info("step execute success with result {}", step.toString());
+		});
+
 		LogBean logbean = new LogBean();
 		logbean.setApiUrl("job operate success " + jobExecution.getStatus() + ",operate count = "
 				+ jobExecution.getExecutionContext().getInt(Bat00XModule.KEY_OPERATE_COUNT) + ",job:" + jobExecution.getJobInstance().getJobName());

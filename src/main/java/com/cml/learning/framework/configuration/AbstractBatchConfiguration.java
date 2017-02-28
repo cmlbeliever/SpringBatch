@@ -15,6 +15,7 @@
  */
 package com.cml.learning.framework.configuration;
 
+import java.lang.reflect.Constructor;
 import java.util.Collection;
 
 import javax.sql.DataSource;
@@ -57,9 +58,6 @@ public abstract class AbstractBatchConfiguration implements ImportAware {
 
 	private BatchConfigurer configurer;
 
-	@Autowired
-	private DataSource defaultDataSource;
-
 	@Bean
 	public JobBuilderFactory jobBuilders() throws Exception {
 		return new JobBuilderFactory(jobRepository());
@@ -99,11 +97,9 @@ public abstract class AbstractBatchConfiguration implements ImportAware {
 			return this.configurer;
 		}
 		if (configurers == null || configurers.isEmpty()) {
-			if (defaultDataSource == null) {
-				throw new IllegalStateException("Data source can not be null!!!");
-			}
-			
-			DefaultBatchConfigurer configurer = new DefaultBatchConfigurer(defaultDataSource);
+			Constructor<DefaultBatchConfigurer> constructor = DefaultBatchConfigurer.class.getDeclaredConstructor();
+			constructor.setAccessible(true);
+			DefaultBatchConfigurer configurer = constructor.newInstance();
 			configurer.initialize();
 			this.configurer = configurer;
 			return configurer;
