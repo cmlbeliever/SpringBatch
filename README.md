@@ -7,7 +7,6 @@
 
 **项目运行参数说明**
 
- - batchName(required) ： 该batch名称，例如运行bat00X，则参数为:batchName=bat00X
  - logging.config(optional) : log配置所在的位置，通常本地运行时不需要关心此参数。在发布到开发机或本番时需要传入。格式：logging.config=${filePath}，例如运行bat00X,则参数为：logging.config=classpath:logback-bat00X.xml
 
 **src/main/java工程结构说明**

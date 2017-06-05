@@ -24,16 +24,12 @@ public abstract class BaseModule implements CommandLineRunner {
 	/** 运行时传递的batch参数 **/
 	private static final String ARGS_BATCH_NAME = "batchName";
 
-	public static void run(Class<? extends BaseModule> module, String[] args) {
+	public static void run(Class<? extends BaseModule> module, String batchName, String[] args) {
 		SpringApplication app = new SpringApplication(module);
 		app.setWebEnvironment(false);
 
-		if (null == args || args.length == 0) {
-			throw new IllegalArgumentException("Args is required,Include " + ARGS_BATCH_NAME + " at least!!");
-		}
-
 		// 解析参数信息
-		Map<String, Object> param = retrieveArgs(args);
+		Map<String, Object> param = retrieveArgs(batchName, args);
 		app.setDefaultProperties(param);
 
 		app.run(args);
@@ -45,29 +41,22 @@ public abstract class BaseModule implements CommandLineRunner {
 	 * @param args
 	 * @return
 	 */
-	private static Map<String, Object> retrieveArgs(String[] args) {
+	private static Map<String, Object> retrieveArgs(String batchName, String[] args) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		for (String arg : args) {
 			String[] regexValue = arg.split("=");
 			String key = regexValue[0];
 			String value = regexValue[1];
 
-			// DB beans扫描配置
-			if (ARGS_BATCH_NAME.equals(key)) {
-				String readBeansPackage = String.format(DB_R_ALIAS_FORMAT, value);
-				String writeBeansPackage = String.format(DB_RW_ALIAS_FORMAT, value);
-				param.put(DB_R_ALIAS_KEY, readBeansPackage);
-				param.put(DB_RW_ALIAS_KEY, writeBeansPackage);
-				// 对应batch 配置目录
-				param.put(ModuleConst.Module.BATCH_PROPERTIES, String.format(ModuleConst.Module.BATCH_PROPERTIES_FORMAT, value));
-			} else {
-				param.put(key, value);
-			}
+			param.put(key, value);
 		}
 
-		if (!param.containsKey(DB_RW_ALIAS_KEY) || !param.containsKey(DB_R_ALIAS_KEY)) {
-			throw new IllegalArgumentException("Param " + ARGS_BATCH_NAME + " is required for launch !!!!!");
-		}
+		String readBeansPackage = String.format(DB_R_ALIAS_FORMAT, batchName);
+		String writeBeansPackage = String.format(DB_RW_ALIAS_FORMAT, batchName);
+		param.put(DB_R_ALIAS_KEY, readBeansPackage);
+		param.put(DB_RW_ALIAS_KEY, writeBeansPackage);
+		// 对应batch 配置目录
+		param.put(ModuleConst.Module.BATCH_PROPERTIES, String.format(ModuleConst.Module.BATCH_PROPERTIES_FORMAT, batchName));
 
 		return param;
 	}
