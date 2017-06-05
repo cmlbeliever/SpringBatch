@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import com.cml.learning.framework.constant.ModuleConst;
 import com.cml.learning.framework.mybatis.marker.ReadMapper;
 
+
 @Configuration
 @AutoConfigureAfter(MybatisRConfig.class)
-@MapperScan(markerInterface = ReadMapper.class, basePackages = {
-		ModuleConst.Framwwork.MAPPER_SCAN_R_PACKAGE }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
+@MapperScan(markerInterface = ReadMapper.class, basePackages = { ModuleConst.Framwwork.MAPPER_SCAN_R_PACKAGE,
+		ModuleConst.Framwwork.MAPPER_SCAN_R_PACKAGE_COMMON }, sqlSessionFactoryRef = "readOnlySqlSessionFactory")
 public class MybatisRScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRScanConfiguration.class);
 

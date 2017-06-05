@@ -27,6 +27,16 @@ public interface ModuleConst {
 		 * 读写mapper interface所在包配置
 		 */
 		String MAPPER_SCAN_RW_PACKAGE = "com.cml.learning.module";
+
+		/***
+		 * common 工程下的读写配置
+		 */
+		String MAPPER_SCAN_RW_PACKAGE_COMMON = "com.bolstra.common.dao.write";
+
+		/**
+		 * common 工程下的读写配置
+		 */
+		String MAPPER_SCAN_R_PACKAGE_COMMON = "com.bolstra.common.dao.read";
 	}
 
 	interface Module {

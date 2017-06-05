@@ -11,8 +11,8 @@ import com.cml.learning.framework.mybatis.marker.WriteMapper;
 
 @Configuration
 @AutoConfigureAfter(MybatisRWConfig.class)
-@MapperScan(markerInterface = WriteMapper.class, basePackages = {
-		ModuleConst.Framwwork.MAPPER_SCAN_RW_PACKAGE }, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(markerInterface = WriteMapper.class, basePackages = { ModuleConst.Framwwork.MAPPER_SCAN_RW_PACKAGE,
+		ModuleConst.Framwwork.MAPPER_SCAN_RW_PACKAGE_COMMON }, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisRWScanConfiguration {
 	protected static Log log = LogFactory.getLog(MybatisRWScanConfiguration.class);
 

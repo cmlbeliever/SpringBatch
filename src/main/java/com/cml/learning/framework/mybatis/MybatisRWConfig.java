@@ -1,5 +1,9 @@
 package com.cml.learning.framework.mybatis;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -12,6 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Component;
@@ -23,8 +28,7 @@ public class MybatisRWConfig {
 
 	@Primary
 	@Bean(name = "sqlSessionFactory")
-	public SqlSessionFactory sqlSessionFactory(DataSource datasource, MybatisConfigurationProperties properties)
-			throws Exception {
+	public SqlSessionFactory sqlSessionFactory(DataSource datasource, MybatisConfigurationProperties properties) throws Exception {
 
 		log.info("*************************sqlSessionFactory:begin***********************" + properties);
 
@@ -34,9 +38,22 @@ public class MybatisRWConfig {
 		sessionFactory.setDataSource(datasource);
 		sessionFactory.setTypeAliasesPackage(properties.typeAliasesPackage);
 		sessionFactory.setTypeHandlersPackage(properties.typeHandlerPackage);
+		
+		org.apache.ibatis.session.Configuration configuration=new org.apache.ibatis.session.Configuration();
+		configuration.setMapUnderscoreToCamelCase(true);
+		sessionFactory.setConfiguration(configuration);
 
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sessionFactory.setMapperLocations(resolver.getResources(properties.mapperLocations));
+
+		if (properties.mapperLocations.contains(",")) {
+			List<Resource> resources = new ArrayList<>();
+			for (String s : properties.mapperLocations.split(",")) {
+				resources.addAll(Arrays.asList(resolver.getResources(s)));
+			}
+			sessionFactory.setMapperLocations(resources.toArray(new Resource[] {}));
+		} else {
+			sessionFactory.setMapperLocations(resolver.getResources(properties.mapperLocations));
+		}
 
 		// sessionFactory
 		// .setConfigLocation(new
@@ -44,8 +61,7 @@ public class MybatisRWConfig {
 
 		SqlSessionFactory resultSessionFactory = sessionFactory.getObject();
 
-		log.info("*************************sqlSessionFactory:successs:" + resultSessionFactory
-				+ "***********************" + properties);
+		log.info("*************************sqlSessionFactory:successs:" + resultSessionFactory + "***********************" + properties);
 
 		return resultSessionFactory;
 
@@ -117,9 +133,8 @@ public class MybatisRWConfig {
 
 		@Override
 		public String toString() {
-			return "MybatisConfigurationProperties [typeAliasesPackage=" + typeAliasesPackage + ", typeHandlerPackage="
-					+ typeHandlerPackage + ", mapperLocations=" + mapperLocations + ", configLocation=" + configLocation
-					+ "]";
+			return "MybatisConfigurationProperties [typeAliasesPackage=" + typeAliasesPackage + ", typeHandlerPackage=" + typeHandlerPackage
+					+ ", mapperLocations=" + mapperLocations + ", configLocation=" + configLocation + "]";
 		}
 
 	}
@@ -140,10 +155,9 @@ public class MybatisRWConfig {
 
 		@Override
 		public String toString() {
-			return "DataSourceProperties [driverClassName=" + driverClassName + ", url=" + url + ", username="
-					+ username + ", password=" + password + ", maxActive=" + maxActive + ", maxIdle=" + maxIdle
-					+ ", minIdle=" + minIdle + ", maxWait=" + maxWait + ", initialSize=" + initialSize
-					+ ", validationQuery=" + validationQuery + "]";
+			return "DataSourceProperties [driverClassName=" + driverClassName + ", url=" + url + ", username=" + username + ", password=" + password
+					+ ", maxActive=" + maxActive + ", maxIdle=" + maxIdle + ", minIdle=" + minIdle + ", maxWait=" + maxWait + ", initialSize="
+					+ initialSize + ", validationQuery=" + validationQuery + "]";
 		}
 
 		public String getDriverClassName() {
