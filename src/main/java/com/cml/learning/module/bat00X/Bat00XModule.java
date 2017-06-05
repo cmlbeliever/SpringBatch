@@ -17,7 +17,7 @@ public class Bat00XModule extends BaseModule implements ModuleConst {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		run(Bat00XModule.class, args);
+		run(Bat00XModule.class, MODULE_NAME, args);
 	}
 
 }

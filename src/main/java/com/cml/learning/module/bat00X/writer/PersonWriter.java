@@ -26,9 +26,15 @@ public class PersonWriter extends BaseWriter<Person> {
 	@Override
 	public void doWrite(Person item, JobParameters params, ExecutionContext stepContext) throws Exception {
 
-//		if ("END".equals(item.getFirstName())) {
-//			throw new IllegalStateException("主动抛出异常");
-//		}
+		// if ("END".equals(item.getFirstName())) {
+		// throw new IllegalStateException("主动抛出异常");
+		// }
+
+		if ("LASTNAME390".equals(item.getLastName())) {
+			stepExecution.setTerminateOnly();
+			System.out.println(
+					"=============================================================停止batch==================================================");
+		}
 
 		LogBean logbean = new LogBean();
 		logbean.setApiUrl("batchTest");

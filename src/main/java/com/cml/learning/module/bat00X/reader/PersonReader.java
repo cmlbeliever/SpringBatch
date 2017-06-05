@@ -11,7 +11,7 @@ import com.cml.learning.module.bat00X.beans.Person;
 
 public class PersonReader extends BaseItemReader<Person> {
 	private static final Logger log = LoggerFactory.getLogger(PersonReader.class);
-	private int count = 4;
+	private int count = 400;
 
 	@Override
 	public Person read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
