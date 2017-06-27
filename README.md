@@ -41,6 +41,11 @@
  - DB所对应的bean在每个batch下的beans包下，如bat001 对应的bean在包:com.cml.learning.module.bat001.beans下，Mybatis 会自动扫描此包下对应的bean
  - processor,reader,writer都有对应的基类，每个batch下对应的模块都需要继承对应的基类。
  
+**工程打包说明**
+
+ - 默认每个batch是互相独立的，所有的batch都可以打包成一个单独的jar
+ - 打包命令 mvn -f pom-deploy.xml package -Dbatch.module=${batchModule}，详见：[wiki打包说明](https://github.com/cmlbeliever/SpringBatch/blob/master/wiki/deploy.md)
+ 
 # 开发问题
   - 多数据源下启动报错问题总结地址：http://blog.csdn.net/cml_blog/article/details/58604485
 
